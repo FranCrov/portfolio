@@ -9,6 +9,13 @@ Portfolio de una sola página para presentar el perfil profesional, proyectos y 
 - Tailwind CSS 4
 - `next-themes` para el tema claro/oscuro y la preferencia del sistema
 
+## Organización
+
+- `app/page.tsx` compone las secciones de la página.
+- `components/` contiene componentes React pequeños; las secciones se renderizan en servidor.
+- El toggle de tema es interactivo y se ejecuta en el cliente.
+- `data/` contiene los datos tipados de proyectos, habilidades y recorrido.
+
 ## Ejecutar localmente
 
 Se requiere Node.js 20.9 o superior.

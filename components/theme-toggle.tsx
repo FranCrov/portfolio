@@ -3,18 +3,19 @@
 import { useTheme } from "next-themes";
 
 export function ThemeToggle() {
-  const { resolvedTheme, setTheme } = useTheme();
+  const { resolvedTheme, systemTheme, setTheme } = useTheme();
 
   function toggleTheme() {
-    setTheme(resolvedTheme === "dark" ? "light" : "dark");
+    const activeTheme = resolvedTheme ?? systemTheme;
+    setTheme(activeTheme === "dark" ? "light" : "dark");
   }
 
   return (
     <button
-      aria-label="Cambiar tema"
+      aria-label="Alternar tema claro u oscuro"
       className="theme-toggle"
       onClick={toggleTheme}
-      title="Cambiar tema"
+      title="Alternar tema claro u oscuro"
       type="button"
     >
       <svg
