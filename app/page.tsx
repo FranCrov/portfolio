@@ -1,4 +1,5 @@
 import { ThemeToggle } from "./theme-toggle";
+import { projects } from "@/data/projects";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
               Inicio
             </a>
             <a href="#sobre-mi">Sobre mí</a>
+            <a href="#proyectos">Proyectos</a>
           </nav>
           <ThemeToggle />
         </div>
@@ -62,6 +64,60 @@ export default function Home() {
             para aportar en proyectos reales y seguir creciendo como
             desarrollador.
           </p>
+        </section>
+        <section
+          aria-labelledby="projects-title"
+          className="projects"
+          id="proyectos"
+        >
+          <div className="projects__header">
+            <p className="section-eyebrow">Selección de trabajos</p>
+            <h2 id="projects-title">Proyectos</h2>
+            <p className="projects__description">
+              Proyectos académicos y soluciones web en las que participé.
+            </p>
+          </div>
+          <div className="projects__grid">
+            {projects.map((project, index) => (
+              <article className="project-card" key={project.title}>
+                <div className="project-card__meta">
+                  <span className="project-card__number">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span>{project.category}</span>
+                </div>
+                <h3>{project.title}</h3>
+                {project.status ? (
+                  <p className="project-card__status">{project.status}</p>
+                ) : null}
+                <p className="project-card__description">
+                  {project.description}
+                </p>
+                <ul
+                  aria-label={`Tecnologías de ${project.title}`}
+                  className="project-card__technologies"
+                >
+                  {project.technologies.map((technology) => (
+                    <li key={`${project.title}-${technology}`}>{technology}</li>
+                  ))}
+                </ul>
+                <div className="project-card__links">
+                  {project.links.map((link) => (
+                    <a
+                      aria-label={`${link.label}: ${project.title}`}
+                      href={link.href}
+                      key={link.href}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      {link.label}
+                      <span aria-hidden="true">↗</span>
+                    </a>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
         </section>
       </main>
     </>
