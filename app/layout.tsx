@@ -14,8 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio | Full Stack Developer",
-  description: "Portfolio personal de desarrollo web Full Stack.",
+  title: "Franco Crovetto | Full Stack Developer",
+  description:
+    "Portfolio personal de Franco Crovetto, estudiante de Ingeniería en Sistemas y desarrollador Full Stack.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
