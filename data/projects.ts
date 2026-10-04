@@ -15,7 +15,7 @@ export const projects: Project[] = [
     title: "SmartCloth Logistics",
     category: "Comercio electrónico y logística",
     description:
-      "Plataforma de comercio electrónico que integra ventas, inventario, distribución y análisis de datos. Proyecto final para el título intermedio de Analista en Sistemas Informáticos, desarrollado durante un año por un equipo de tres estudiantes, desde el análisis hasta la implementación.",
+      "Plataforma de comercio electrónico que integra ventas, inventario, distribución y análisis de datos. Proyecto final para el título intermedio de Analista en Sistemas Informáticos, desarrollado durante un año por un equipo de cuatro estudiantes, desde el análisis hasta la implementación.",
     technologies: [
       "Next.js",
       "React",

@@ -1,5 +1,7 @@
 import { ThemeToggle } from "./theme-toggle";
 import { projects } from "@/data/projects";
+import { journey } from "@/data/journey";
+import { skillGroups } from "@/data/skills";
 
 export default function Home() {
   return (
@@ -9,7 +11,7 @@ export default function Home() {
       </a>
       <header className="site-header">
         <div className="site-header__inner">
-          <a className="brand" href="#inicio">
+          <a aria-label="Ir al inicio" className="brand" href="#inicio">
             FC<span aria-hidden="true">.</span>
           </a>
           <nav aria-label="Navegación principal" className="site-nav">
@@ -17,6 +19,7 @@ export default function Home() {
               Inicio
             </a>
             <a href="#sobre-mi">Sobre mí</a>
+            <a href="#recorrido">Recorrido</a>
             <a href="#proyectos">Proyectos</a>
           </nav>
           <ThemeToggle />
@@ -64,6 +67,47 @@ export default function Home() {
             para aportar en proyectos reales y seguir creciendo como
             desarrollador.
           </p>
+          <div className="skills">
+            <h3 className="skills__title">Habilidades</h3>
+            <div className="skills__grid">
+              {skillGroups.map((group) => (
+                <section
+                  aria-labelledby={`skills-${group.name}`}
+                  className="skill-group"
+                  key={group.name}
+                >
+                  <h4 id={`skills-${group.name}`}>{group.name}</h4>
+                  <ul>
+                    {group.skills.map((skill) => (
+                      <li key={`${group.name}-${skill}`}>{skill}</li>
+                    ))}
+                  </ul>
+                </section>
+              ))}
+            </div>
+          </div>
+        </section>
+        <section
+          aria-labelledby="journey-title"
+          className="journey"
+          id="recorrido"
+        >
+          <div className="projects__header">
+            <p className="section-eyebrow">Formación y experiencia</p>
+            <h2 id="journey-title">Recorrido</h2>
+          </div>
+          <ol className="journey__timeline">
+            {journey.map((entry) => (
+              <li className="journey__entry" key={entry.title}>
+                <p className="journey__period">{entry.period}</p>
+                <div className="journey__content">
+                  <h3>{entry.title}</h3>
+                  <p className="journey__context">{entry.context}</p>
+                  <p className="journey__description">{entry.description}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </section>
         <section
           aria-labelledby="projects-title"
