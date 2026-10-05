@@ -3,36 +3,59 @@
 import { useTheme } from "next-themes";
 
 export function ThemeToggle() {
-  const { resolvedTheme, systemTheme, setTheme } = useTheme();
-
-  function toggleTheme() {
-    const activeTheme = resolvedTheme ?? systemTheme;
-    setTheme(activeTheme === "dark" ? "light" : "dark");
-  }
+  const { resolvedTheme, setTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
 
   return (
     <button
-      aria-label="Alternar tema claro u oscuro"
+      aria-label={
+        isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"
+      }
       className="theme-toggle"
-      onClick={toggleTheme}
-      title="Alternar tema claro u oscuro"
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+      title={isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
       type="button"
     >
-      <svg
-        aria-hidden="true"
-        fill="none"
-        height="20"
-        viewBox="0 0 24 24"
-        width="20"
-      >
-        <path
-          d="M12 3v1.5m0 15V21m9-9h-1.5M4.5 12H3m15.36-6.36-1.06 1.06M6.7 17.3l-1.06 1.06m12.72 0-1.06-1.06M6.7 6.7 5.64 5.64M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="1.7"
-        />
-      </svg>
+      <MoonIcon />
+      <SunIcon />
     </button>
+  );
+}
+
+function SunIcon() {
+  return (
+    <svg
+      className="theme-toggle__sun"
+      fill="none"
+      focusable="false"
+      height="20"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.7"
+      viewBox="0 0 24 24"
+      width="20"
+    >
+      <path d="M12 3v1.5m0 15V21m9-9h-1.5M4.5 12H3m15.36-6.36-1.06 1.06M6.7 17.3l-1.06 1.06m12.72 0-1.06-1.06M6.7 6.7 5.64 5.64M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" />
+    </svg>
+  );
+}
+
+function MoonIcon() {
+  return (
+    <svg
+      className="theme-toggle__moon"
+      fill="none"
+      focusable="false"
+      height="20"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.7"
+      viewBox="0 0 24 24"
+      width="20"
+    >
+      <path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z" />
+    </svg>
   );
 }

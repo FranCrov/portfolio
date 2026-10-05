@@ -1,10 +1,10 @@
 import { ThemeToggle } from "@/components/theme-toggle";
+import { site } from "@/data/site";
 
 const navigationLinks = [
-  { href: "#inicio", label: "Inicio" },
+  { href: "#proyectos", label: "Proyectos" },
   { href: "#sobre-mi", label: "Sobre mí" },
   { href: "#recorrido", label: "Recorrido" },
-  { href: "#proyectos", label: "Proyectos" },
   { href: "#contacto", label: "Contacto" },
 ];
 
@@ -15,17 +15,14 @@ export function SiteHeader() {
         Saltar al contenido
       </a>
       <header className="site-header">
-        <div className="site-header__inner">
-          <a aria-label="Ir al inicio" className="brand" href="#inicio">
-            FC<span aria-hidden="true">.</span>
+        <div className="shell site-header__inner">
+          <a aria-label={`${site.name}, inicio`} className="brand" href="#inicio">
+            {site.firstName}
+            <span aria-hidden="true">.</span>
           </a>
           <nav aria-label="Navegación principal" className="site-nav">
             {navigationLinks.map(({ href, label }) => (
-              <a
-                aria-current={href === "#inicio" ? "page" : undefined}
-                href={href}
-                key={href}
-              >
+              <a href={href} key={href}>
                 {label}
               </a>
             ))}

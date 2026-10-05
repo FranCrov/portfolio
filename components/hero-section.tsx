@@ -1,28 +1,67 @@
+import { Icon } from "@/components/icon";
+import { site } from "@/data/site";
+
 export function HeroSection() {
   return (
     <section aria-labelledby="hero-title" className="hero" id="inicio">
-      <div className="hero__content">
-        <p className="hero__eyebrow">Hola, soy</p>
-        <h1 id="hero-title">Franco Crovetto</h1>
-        <p className="hero__role">Full Stack Developer</p>
-        <p className="hero__description">
-          Desarrollo soluciones web pensadas para personas y negocios.
-        </p>
-        <div className="hero__actions">
-          <a className="button button--primary" href="#proyectos">
-            Ver proyectos
+      <div className="shell hero__inner">
+        <div className="hero__copy">
+          <p className="hero__eyebrow">{site.analystTitle}</p>
+          <h1 id="hero-title">
+            <span>{site.firstName}</span>
+            <span className="hero__surname">
+              <em>{site.lastName}</em>
+            </span>
+          </h1>
+          <p className="hero__role">{site.role}</p>
+          <p className="hero__description">
+            Soy {site.firstName} {site.lastName}, estudiante de Ingeniería en
+            Sistemas. Construyo aplicaciones web de punta a punta: interfaz,
+            lógica, datos e integraciones.
+          </p>
+          <div className="hero__actions">
+            <a className="button button--primary" href="#proyectos">
+              Explorá mis proyectos
+              <Icon name="arrowUpRight" />
+            </a>
+            <a className="button button--ghost" href="#contacto">
+              Contactarme
+              <Icon name="arrowDown" />
+            </a>
+          </div>
+        </div>
+        <figure
+          aria-label="Avatar tipográfico de Franco Crovetto con sus iniciales"
+          className="hero__portrait"
+          role="img"
+        >
+          <span aria-hidden="true" className="hero__portrait-ring" />
+          <span aria-hidden="true" className="hero__portrait-initials">
+            FC
+          </span>
+          <figcaption>FULL STACK DEVELOPER</figcaption>
+        </figure>
+      </div>
+      <div className="shell hero__bar">
+        <div className="hero__bar-links">
+          <a href={site.github} rel="noopener noreferrer" target="_blank">
+            GitHub
+            <Icon name="arrowUpRight" />
           </a>
-          <a className="button button--secondary" href="#contacto">
-            Contactarme
+          <a href={site.linkedin} rel="noopener noreferrer" target="_blank">
+            LinkedIn
+            <Icon name="arrowUpRight" />
+          </a>
+          <a href={`mailto:${site.email}`}>
+            {site.email}
+            <Icon name="arrowUpRight" />
+          </a>
+          <a download href={site.cv}>
+            Descargar CV
+            <Icon name="download" />
           </a>
         </div>
-      </div>
-      <div
-        aria-label="Avatar tipográfico con las iniciales FC"
-        className="hero__avatar"
-        role="img"
-      >
-        FC
+        <p className="hero__bar-meta">Disponible para proyectos y oportunidades</p>
       </div>
     </section>
   );
