@@ -134,10 +134,11 @@ export function ContactForm() {
           <label htmlFor="contact-name">Nombre</label>
           <input
             aria-describedby="contact-name-error"
+            aria-errormessage="contact-name-error"
             aria-invalid={errors.name ? "true" : undefined}
             autoComplete="name"
             id="contact-name"
-            maxLength={NAME_MAX + 20}
+            maxLength={NAME_MAX}
             name="name"
             onBlur={() => handleBlur("name")}
             onChange={(event) => handleChange("name", event.target.value)}
@@ -155,6 +156,7 @@ export function ContactForm() {
           <label htmlFor="contact-email">Email</label>
           <input
             aria-describedby="contact-email-error"
+            aria-errormessage="contact-email-error"
             aria-invalid={errors.email ? "true" : undefined}
             autoComplete="email"
             id="contact-email"
@@ -176,6 +178,7 @@ export function ContactForm() {
           <label htmlFor="contact-message">Mensaje</label>
           <textarea
             aria-describedby="contact-message-hint contact-message-error"
+            aria-errormessage="contact-message-error"
             aria-invalid={errors.message ? "true" : undefined}
             id="contact-message"
             maxLength={MESSAGE_MAX}

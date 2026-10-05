@@ -16,9 +16,10 @@ export function SiteHeader() {
       </a>
       <header className="site-header">
         <div className="shell site-header__inner">
-          <a aria-label={`${site.name}, inicio`} className="brand" href="#inicio">
+          <a className="brand" href="#inicio">
             {site.brandName}
             <span aria-hidden="true">.</span>
+            <span className="sr-only">, inicio</span>
           </a>
           <nav aria-label="Navegación principal" className="site-nav">
             {navigationLinks.map(({ href, label }) => (

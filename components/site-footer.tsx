@@ -5,9 +5,10 @@ export function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="shell site-footer__inner">
-        <a aria-label={`${site.name}, volver al inicio`} className="brand" href="#inicio">
+        <a className="brand" href="#inicio">
           {site.firstName}
           <span aria-hidden="true">.</span>
+          <span className="sr-only">, volver al inicio</span>
         </a>
         <p>
           © {new Date().getFullYear()} {site.name} · {site.role}

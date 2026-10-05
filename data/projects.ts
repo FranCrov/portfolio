@@ -1,4 +1,4 @@
-﻿export type ProjectLogo = {
+export type ProjectLogo = {
   src: string;
 };
 
@@ -23,11 +23,11 @@ export const projects: Project[] = [
     title: "SmartCloth Logistics",
     tone: "night",
     wide: true,
-    category: "Comercio electrÃ³nico y logÃ­stica",
+    category: "Comercio electrónico y logística",
     summary:
-      "Plataforma de comercio electrÃ³nico que integra ventas, inventario, distribuciÃ³n y anÃ¡lisis de datos. Un sistema completo, con pagos, emails transaccionales y control de acceso por roles.",
+      "Plataforma de comercio electrónico que integra ventas, inventario, distribución y análisis de datos. Un sistema completo, con pagos, emails transaccionales y control de acceso por roles.",
     detail:
-      "Trabajo prÃ¡ctico en equipo con Teo Fassardi, desarrollado durante el Ãºltimo aÃ±o de la carrera. Cada integrante desarrollÃ³ una parte del sistema y el repositorio es compartido.",
+      "Trabajo práctico en equipo con Teo Fassardi, desarrollado durante el último año de la carrera. Cada integrante desarrolló una parte del sistema y el repositorio es compartido.",
     technologies: [
       "Next.js",
       "React",
@@ -51,11 +51,11 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: "PlÃ¡sticos RT",
+    title: "Plásticos RT",
     tone: "tangerine",
-    category: "Sitio institucional y catÃ¡logo",
+    category: "Sitio institucional y catálogo",
     summary:
-      "Sitio web para presentar la empresa, su equipo y el catÃ¡logo de materias primas plÃ¡sticas, con informaciÃ³n de contacto y ubicaciÃ³n.",
+      "Sitio web para presentar la empresa, su equipo y el catálogo de materias primas plásticas, con información de contacto y ubicación.",
     detail: "El proyecto sigue en desarrollo.",
     technologies: ["Next.js", "React", "Tailwind CSS", "TypeScript"],
     status: "En desarrollo",
@@ -72,11 +72,11 @@ export const projects: Project[] = [
   {
     title: "Biblioteca Dashboard",
     tone: "brand",
-    category: "GestiÃ³n y anÃ¡lisis de datos",
+    category: "Gestión y análisis de datos",
     summary:
-      "Dashboard de reservas de libros con reportes de ventas, tÃ­tulos mÃ¡s alquilados y rentabilidad. Incluye semaforizaciÃ³n para facilitar la lectura de resultados.",
+      "Dashboard de reservas de libros con reportes de ventas, títulos más alquilados y rentabilidad. Incluye semáforo para facilitar la lectura de resultados.",
     detail:
-      "Desarrollado para una materia de bases de datos, con autenticaciÃ³n y persistencia en MySQL.",
+      "Desarrollado para una materia de bases de datos, con autenticación y persistencia en MySQL.",
     technologies: [
       "Next.js",
       "React",

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Icon } from "@/components/icon";
 import { site } from "@/data/site";
 
@@ -30,16 +31,19 @@ export function HeroSection() {
             </a>
           </div>
         </div>
-        <figure
-          aria-label="Avatar tipográfico de Franco Crovetto con sus iniciales"
-          className="hero__portrait"
-          role="img"
-        >
+        <figure className="hero__portrait">
+          <Image
+            alt={`Retrato de ${site.name}`}
+            className="hero__portrait-image"
+            fill
+            placeholder="blur"
+            priority
+            sizes="(max-width: 700px) 44vw, 19rem"
+            src={site.portrait}
+          />
           <span aria-hidden="true" className="hero__portrait-ring" />
-          <span aria-hidden="true" className="hero__portrait-initials">
-            FC
-          </span>
-          <figcaption>FULL STACK DEVELOPER</figcaption>
+          <span aria-hidden="true" className="hero__portrait-sheen" />
+          <figcaption>{site.role}</figcaption>
         </figure>
       </div>
       <div className="shell hero__bar">

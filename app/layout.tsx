@@ -1,13 +1,17 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Barlow_Condensed, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import { site } from "@/data/site";
 
+/* Dos pesos en lugar de tres: Barlow Condensed no tiene versión variable en
+   Google Fonts (verificado en font-data.json: solo pesos estáticos 100-900),
+   así que cada peso es un archivo aparte. El 600 se mapea a 700 en el CSS y la
+   diferencia visual entre ambos en condensed es imperceptible. */
 const displayFont = Barlow_Condensed({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
+  weight: ["700", "800"],
 });
 
 const bodyFont = DM_Sans({
@@ -17,6 +21,7 @@ const bodyFont = DM_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
+  alternates: { canonical: "/" },
   title: `${site.name} | ${site.role}`,
   description: site.description,
   keywords: [
@@ -43,7 +48,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport = {
+export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#f7f8fa" },
     { media: "(prefers-color-scheme: dark)", color: "#0c0d10" },
@@ -53,9 +58,10 @@ export const viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
+      className={`${displayFont.variable} ${bodyFont.variable}`}
+      data-scroll-behavior="smooth"
       lang="es"
       suppressHydrationWarning
-      className={`${displayFont.variable} ${bodyFont.variable}`}
     >
       <head>
         <script

@@ -9,6 +9,9 @@
   --ink: #0f172a;
   --muted: #5a6478;
   --line: #d9dfea;
+  /* Bordes con significado (controles interactivos). WCAG 1.4.11 exige 3:1
+     contra el fondo adyacente; --line queda solo para separadores decorativos. */
+  --line-strong: #7d8a9e;
 
   --brand: #2563eb;
   --brand-strong: #1d4ed8;
@@ -16,6 +19,8 @@
   --accent: #7c3aed;
   --accent-strong: #6d28d9;
   --on-accent: #ffffff;
+  /* Violeta legible sobre los paneles --night, donde --accent no alcanza 4.5:1. */
+  --accent-on-night: #a78bfa;
 
   --panel-tangerine: #f59e0b;
 
@@ -44,6 +49,7 @@
   --ink: #f2f3f5;
   --muted: #a3a8b3;
   --line: #2b2f37;
+  --line-strong: #646e7e;
 
   --brand: #5b93ff;
   --brand-strong: #8ab2ff;
@@ -51,6 +57,7 @@
   --accent: #a78bfa;
   --accent-strong: #c4b5fd;
   --on-accent: #0c0d10;
+  --accent-on-night: #c4b5fd;
 
   --night: #080a0f;
   --night-deep: #05070b;
@@ -143,14 +150,28 @@ textarea:focus-visible {
   outline-offset: 3px;
 }
 
+/* --on-accent resuelve el color de texto: blanco sobre violeta en claro,
+   tinta oscura sobre el violeta claro del tema oscuro. */
 ::selection {
   background: var(--accent);
-  color: #ffffff;
+  color: var(--on-accent);
 }
 
 .shell {
   width: min(100% - 3rem, var(--shell));
   margin-inline: auto;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 .skip-link {
@@ -242,12 +263,12 @@ textarea:focus-visible {
 }
 
 .theme-toggle {
+  border: 1px solid var(--line-strong);
   display: grid;
   width: 2.75rem;
   height: 2.75rem;
   flex-shrink: 0;
   place-items: center;
-  border: 1px solid var(--line);
   border-radius: 999px;
 }
 
@@ -350,7 +371,7 @@ textarea:focus-visible {
   color: var(--accent);
   font-family: var(--display);
   font-size: clamp(1.5rem, 3vw, 2.25rem);
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.01em;
   line-height: 1.1;
 }
@@ -412,7 +433,7 @@ textarea:focus-visible {
 }
 
 .button--ghost {
-  border-color: color-mix(in srgb, var(--night-ink) 32%, transparent);
+  border-color: color-mix(in srgb, var(--night-ink) 45%, transparent);
   color: var(--night-ink);
 }
 
@@ -445,25 +466,42 @@ textarea:focus-visible {
 .hero__portrait-ring {
   position: absolute;
   inset: 8%;
-  border: 1px dashed color-mix(in srgb, var(--accent) 40%, transparent);
+  z-index: 2;
+  border: 1px dashed color-mix(in srgb, var(--accent-on-night) 45%, transparent);
   border-radius: 50%;
+  pointer-events: none;
 }
 
-.hero__portrait-initials {
-  font-family: var(--display);
-  font-size: clamp(4.5rem, 9vw, 7.5rem);
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  line-height: 1;
+/* El retrato ocupa todo el círculo; el relleno degradado queda detrás por si
+   la imagen tarda en cargar. */
+.hero__portrait-image {
+  object-fit: cover;
+  object-position: center 22%;
+}
+
+/* Velo inferior para que el pie de foto se lea sobre cualquier foto. */
+.hero__portrait-sheen {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to top,
+    rgb(6 10 20 / 82%) 0%,
+    rgb(6 10 20 / 34%) 26%,
+    transparent 48%
+  );
+  pointer-events: none;
 }
 
 .hero__portrait figcaption {
   position: absolute;
+  z-index: 2;
   bottom: 12%;
-  color: var(--night-muted);
+  color: var(--night-ink);
   font-size: 0.6875rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 .hero__bar {
@@ -492,7 +530,7 @@ textarea:focus-visible {
 }
 
 .hero__bar a:hover {
-  color: var(--accent);
+  color: var(--accent-on-night);
 }
 
 .hero__bar svg {
@@ -593,6 +631,9 @@ textarea:focus-visible {
 
 .project__panel {
   --panel: var(--brand);
+  /* --brand es #2563eb en claro y #5b93ff en oscuro. El blanco sobre el azul
+     oscuro queda en 2.97:1, así que la tinta sigue al panel: blanco en claro,
+     tinta oscura en oscuro. Cada combinación supera 4.5:1. */
   --panel-ink: #ffffff;
 
   position: relative;
@@ -612,6 +653,10 @@ textarea:focus-visible {
   --panel-ink: #1c1204;
 }
 
+.dark .project[data-tone="brand"] .project__panel {
+  --panel-ink: #0c0d10;
+}
+
 .project[data-tone="night"] .project__panel {
   --panel: var(--night);
   --panel-ink: var(--night-ink);
@@ -628,13 +673,14 @@ textarea:focus-visible {
   content: "";
 }
 
+/* Sin opacity: al 85% el blanco sobre --brand cae a 4.20:1, por debajo de AA.
+   La tinta ya viene a opacidad completa desde --panel-ink. */
 .project__panel-tag {
   position: relative;
   z-index: 1;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.08em;
-  opacity: 0.85;
   text-transform: uppercase;
 }
 
@@ -749,7 +795,7 @@ textarea:focus-visible {
 
 .project__note {
   margin-top: 0.625rem;
-  color: color-mix(in srgb, var(--muted) 85%, transparent);
+  color: var(--muted);
   font-size: 0.8125rem;
   line-height: 1.6;
 }
@@ -849,7 +895,7 @@ textarea:focus-visible {
 .skills__head h3 {
   font-family: var(--display);
   font-size: clamp(1.375rem, 2.5vw, 1.75rem);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .skills__head svg {
@@ -920,7 +966,7 @@ textarea:focus-visible {
   color: var(--brand);
   font-family: var(--display);
   font-size: 1.0625rem;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .journey__body h3 {
@@ -1058,8 +1104,8 @@ textarea:focus-visible {
   height: 2.75rem;
   flex-shrink: 0;
   place-items: center;
-  border: 1px solid color-mix(in srgb, var(--night-ink) 22%, transparent);
-  border-radius: var(--radius);
+border: 1px solid color-mix(in srgb, var(--night-ink) 38%, transparent);
+    border-radius: var(--radius);
   color: var(--night-muted);
 }
 
@@ -1081,7 +1127,7 @@ textarea:focus-visible {
 .copy-status {
   min-height: 1.25rem;
   margin-top: 0.5rem;
-  color: var(--accent);
+  color: var(--accent-on-night);
   font-size: 0.8125rem;
 }
 
@@ -1101,7 +1147,7 @@ textarea:focus-visible {
 }
 
 .contact__socials a:hover {
-  color: var(--accent);
+  color: var(--accent-on-night);
 }
 
 .contact__socials svg {
@@ -1144,7 +1190,7 @@ textarea:focus-visible {
 .field input,
 .field textarea {
   width: 100%;
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-strong);
   border-radius: var(--radius);
   background: var(--surface);
   color: var(--ink);
@@ -1167,7 +1213,8 @@ textarea:focus-visible {
 
 .field input::placeholder,
 .field textarea::placeholder {
-  color: color-mix(in srgb, var(--muted) 75%, transparent);
+  color: var(--muted);
+  opacity: 1;
 }
 
 .field input:hover,
@@ -1232,17 +1279,20 @@ textarea:focus-visible {
   line-height: 1.55;
 }
 
-.contact-form__status {
+/* La región viva debe permanecer renderizada y fuera de display:none para que
+   los lectores de pantalla anuncien el texto al insertarse. El marco visual se
+   aplica solo cuando hay contenido, así el estado vacío no ocupa espacio. */
+.contact-form__status:empty {
+  margin: 0;
+}
+
+.contact-form__status:not(:empty) {
   margin-top: 1.25rem;
   border-left: 3px solid var(--brand);
   background: var(--surface-sunken);
   padding: 0.875rem 1rem;
   font-size: 0.875rem;
   line-height: 1.6;
-}
-
-.contact-form__status:empty {
-  display: none;
 }
 
 /* ---------------------------------------------------------------- footer */
@@ -1272,6 +1322,42 @@ textarea:focus-visible {
   gap: 0.5rem;
   color: var(--muted);
   font-size: 0.8125rem;
+}
+
+/* ------------------------------------------------------- not-found / error */
+
+.notfound {
+  min-height: 70vh;
+  display: grid;
+  place-items: center;
+}
+
+.notfound__inner {
+  text-align: center;
+}
+
+.notfound__code {
+  color: var(--accent);
+  font-family: var(--display);
+  font-size: clamp(4rem, 12vw, 8rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.04em;
+}
+
+.notfound__title {
+  margin-top: 0.75rem;
+  font-family: var(--display);
+  font-size: clamp(1.75rem, 5vw, 2.75rem);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.notfound__text {
+  max-width: 34rem;
+  margin: 0.75rem auto 1.75rem;
+  color: var(--muted);
+  line-height: 1.6;
 }
 
 .site-footer__top:hover {
