@@ -2,6 +2,7 @@ export const site = {
   name: "Franco Crovetto",
   firstName: "Franco",
   lastName: "Crovetto",
+  brandName: "Crove",
   role: "Full Stack Developer",
   analystTitle: "Analista en Sistemas · En formación",
   location: "Rosario, Argentina",

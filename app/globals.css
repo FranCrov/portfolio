@@ -13,8 +13,11 @@
   --brand: #2563eb;
   --brand-strong: #1d4ed8;
   --brand-soft: #93b4fd;
-  --spark: #f59e0b;
-  --spark-strong: #d97706;
+  --accent: #7c3aed;
+  --accent-strong: #6d28d9;
+  --on-accent: #ffffff;
+
+  --panel-tangerine: #f59e0b;
 
   --night: #101827;
   --night-deep: #0a0f1a;
@@ -45,8 +48,9 @@
   --brand: #5b93ff;
   --brand-strong: #8ab2ff;
   --brand-soft: #2f4a7d;
-  --spark: #fbbf24;
-  --spark-strong: #f59e0b;
+  --accent: #a78bfa;
+  --accent-strong: #c4b5fd;
+  --on-accent: #0c0d10;
 
   --night: #080a0f;
   --night-deep: #05070b;
@@ -140,8 +144,8 @@ textarea:focus-visible {
 }
 
 ::selection {
-  background: var(--spark);
-  color: #101827;
+  background: var(--accent);
+  color: #ffffff;
 }
 
 .shell {
@@ -194,7 +198,7 @@ textarea:focus-visible {
 }
 
 .brand span {
-  color: var(--spark);
+  color: var(--accent);
 }
 
 .site-nav {
@@ -220,7 +224,7 @@ textarea:focus-visible {
   width: 100%;
   height: 2px;
   border-radius: 2px;
-  background: var(--spark);
+  background: var(--accent);
   content: "";
   transform: scaleX(0);
   transform-origin: left;
@@ -248,8 +252,8 @@ textarea:focus-visible {
 }
 
 .theme-toggle:hover {
-  border-color: var(--spark);
-  color: var(--spark);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .theme-toggle svg {
@@ -285,7 +289,7 @@ textarea:focus-visible {
     ),
     radial-gradient(
       30rem 26rem at 4% 96%,
-      color-mix(in srgb, var(--spark) 14%, transparent),
+      color-mix(in srgb, var(--accent) 14%, transparent),
       transparent 68%
     );
   content: "";
@@ -343,7 +347,7 @@ textarea:focus-visible {
 
 .hero__role {
   margin-top: 1.75rem;
-  color: var(--spark);
+  color: var(--accent);
   font-family: var(--display);
   font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 600;
@@ -399,12 +403,12 @@ textarea:focus-visible {
 }
 
 .button--primary {
-  background: var(--spark);
-  color: #1c1204;
+  background: var(--accent);
+  color: var(--on-accent);
 }
 
 .button--primary:hover {
-  background: color-mix(in srgb, var(--spark) 82%, white);
+  background: var(--accent-strong);
 }
 
 .button--ghost {
@@ -441,7 +445,7 @@ textarea:focus-visible {
 .hero__portrait-ring {
   position: absolute;
   inset: 8%;
-  border: 1px dashed color-mix(in srgb, var(--spark) 40%, transparent);
+  border: 1px dashed color-mix(in srgb, var(--accent) 40%, transparent);
   border-radius: 50%;
 }
 
@@ -488,7 +492,7 @@ textarea:focus-visible {
 }
 
 .hero__bar a:hover {
-  color: var(--spark);
+  color: var(--accent);
 }
 
 .hero__bar svg {
@@ -603,8 +607,8 @@ textarea:focus-visible {
   color: var(--panel-ink);
 }
 
-.project[data-tone="spark"] .project__panel {
-  --panel: var(--spark);
+.project[data-tone="tangerine"] .project__panel {
+  --panel: var(--panel-tangerine);
   --panel-ink: #1c1204;
 }
 
@@ -715,16 +719,16 @@ textarea:focus-visible {
 }
 
 .project__status {
-  border: 1px solid color-mix(in srgb, var(--spark) 50%, var(--line));
+  border: 1px solid color-mix(in srgb, var(--accent) 50%, var(--line));
   border-radius: 999px;
   padding: 0.125rem 0.5rem;
-  color: var(--spark-strong);
+  color: var(--accent-strong);
   font-size: 0.75rem;
   font-weight: 600;
 }
 
 .dark .project__status {
-  color: var(--spark);
+  color: var(--accent);
 }
 
 .project h3 {
@@ -851,7 +855,7 @@ textarea:focus-visible {
 .skills__head svg {
   width: 1.5rem;
   height: 1.5rem;
-  color: var(--spark);
+  color: var(--accent);
 }
 
 .skills__grid {
@@ -957,7 +961,7 @@ textarea:focus-visible {
     ),
     radial-gradient(
       32rem 26rem at 92% 100%,
-      color-mix(in srgb, var(--spark) 16%, transparent),
+      color-mix(in srgb, var(--accent) 16%, transparent),
       transparent 70%
     );
   content: "";
@@ -973,7 +977,7 @@ textarea:focus-visible {
 }
 
 .contact__heading .section__eyebrow {
-  color: var(--spark);
+  color: var(--accent);
 }
 
 .contact__heading h2 {
@@ -1041,11 +1045,11 @@ textarea:focus-visible {
   width: 1.125rem;
   height: 1.125rem;
   flex-shrink: 0;
-  color: var(--spark);
+  color: var(--accent);
 }
 
 .contact__email:hover {
-  color: var(--spark);
+  color: var(--accent);
 }
 
 .copy-email {
@@ -1060,8 +1064,8 @@ textarea:focus-visible {
 }
 
 .copy-email:hover {
-  border-color: var(--spark);
-  color: var(--spark);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .copy-email svg {
@@ -1070,14 +1074,14 @@ textarea:focus-visible {
 }
 
 .copy-email[data-copied] {
-  border-color: var(--spark);
-  color: var(--spark);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .copy-status {
   min-height: 1.25rem;
   margin-top: 0.5rem;
-  color: var(--spark);
+  color: var(--accent);
   font-size: 0.8125rem;
 }
 
@@ -1097,7 +1101,7 @@ textarea:focus-visible {
 }
 
 .contact__socials a:hover {
-  color: var(--spark);
+  color: var(--accent);
 }
 
 .contact__socials svg {

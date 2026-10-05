@@ -17,7 +17,7 @@ export function SiteHeader() {
       <header className="site-header">
         <div className="shell site-header__inner">
           <a aria-label={`${site.name}, inicio`} className="brand" href="#inicio">
-            {site.firstName}
+            {site.brandName}
             <span aria-hidden="true">.</span>
           </a>
           <nav aria-label="Navegación principal" className="site-nav">
