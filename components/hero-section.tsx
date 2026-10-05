@@ -34,6 +34,7 @@ export function HeroSection() {
         <figure className="hero__portrait">
           <Image
             alt={`Retrato de ${site.name}`}
+            blurDataURL={site.portraitBlur}
             className="hero__portrait-image"
             fill
             placeholder="blur"

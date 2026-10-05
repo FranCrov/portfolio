@@ -11,6 +11,11 @@ export const site = {
   linkedin: "https://www.linkedin.com/in/franco-crovetto-1a6992261/",
   cv: "/franco-crovetto-cv.pdf",
   portrait: "/retrato.webp",
+  /* Next exige blurDataURL cuando el src es un string desde public/: un
+     import estático lo genera solo, pero este archivo se mantiene como dato
+     junto al resto. Es un WebP de 8px de ancho (62 bytes). */
+  portraitBlur:
+    "data:image/webp;base64,UklGRjYAAABXRUJQVlA4ICoAAACwAQCdASoIAAsABABoJZwAAtz4tvAAAP7gpcuqjAYw0JZybiY9NaOAAAA=",
   /* Base de todos los URLs de metadata (canonical, OG image, sitemap). Se
      define por entorno para no dejar un dominio supuesto hardcodeado: en Vercel
      cae a la URL real del deploy, y en local al servidor de desarrollo. */

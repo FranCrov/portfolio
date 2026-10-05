@@ -64,12 +64,22 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
     >
       <head>
+        {/* Resuelve el tema y la preferencia de movimiento antes del primer
+            paint, para evitar el flash. Se mantiene como <script> inline en
+            <head> porque debe ejecutarse de forma sincrónica; React no ejecuta
+            scripts renderizados en cliente, y este no necesita re-ejecutarse.
+
+            La clase se nombra "no-motion" y el CSS la lee como
+            .js:not(.no-motion), así que debe estar presente cuando el usuario
+            pide menos movimiento: ahí el reveal se salta y el contenido queda
+            visible. La condición es un if explícito porque classList.add()
+            devuelve undefined y un || encadenado queda al revés. */}
         <script
           dangerouslySetInnerHTML={{
             __html:
               "document.documentElement.classList.add('js');" +
-              "(window.matchMedia('(prefers-reduced-motion: reduce)').matches" +
-              "||document.documentElement.classList.add('no-motion'))",
+              "if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)" +
+              "{document.documentElement.classList.add('no-motion');}",
           }}
         />
       </head>
