@@ -473,10 +473,13 @@ textarea:focus-visible {
 }
 
 /* El retrato ocupa todo el círculo; el relleno degradado queda detrás por si
-   la imagen tarda en cargar. */
+   la imagen tarda en cargar. El leve scale genera el margen necesario para
+   compensar el rostro hacia abajo y hacia la derecha sin dejar bordes. */
 .hero__portrait-image {
   object-fit: cover;
   object-position: center 22%;
+  transform: translate(3.5%, 2.5%) scale(1.2);
+  transform-origin: center;
 }
 
 /* Velo inferior para que el pie de foto se lea sobre cualquier foto. */
