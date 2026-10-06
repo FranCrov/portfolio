@@ -39,12 +39,10 @@ export function HeroSection() {
             fill
             placeholder="blur"
             priority
-            sizes="(max-width: 700px) 44vw, 19rem"
+            sizes="(max-width: 768px) clamp(8rem, 26vw, 11rem), 19rem"
             src={site.portrait}
           />
           <span aria-hidden="true" className="hero__portrait-ring" />
-          <span aria-hidden="true" className="hero__portrait-sheen" />
-          <figcaption>{site.role}</figcaption>
         </figure>
       </div>
       <div className="shell hero__bar">

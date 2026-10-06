@@ -3,17 +3,19 @@
 import { useTheme } from "next-themes";
 
 export function ThemeToggle() {
-  const { resolvedTheme, setTheme } = useTheme();
-  const isDark = resolvedTheme === "dark";
+  const { resolvedTheme, systemTheme, setTheme } = useTheme();
+
+  function toggleTheme() {
+    const activeTheme = resolvedTheme ?? systemTheme ?? "light";
+    setTheme(activeTheme === "dark" ? "light" : "dark");
+  }
 
   return (
     <button
-      aria-label={
-        isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"
-      }
+      aria-label="Alternar tema claro u oscuro"
       className="theme-toggle"
-      onClick={() => setTheme(isDark ? "light" : "dark")}
-      title={isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+      onClick={toggleTheme}
+      title="Alternar tema claro u oscuro"
       type="button"
     >
       <MoonIcon />
